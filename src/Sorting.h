@@ -11,6 +11,15 @@
 
 using namespace std;
 
-void insertion_sort(int*, int);
+
+typedef int e_type;
+typedef std::vector<int> Collection;
+typedef Collection::iterator Iterator;
+
+void insertionSort(Iterator, Iterator);
+
+void bubbleSort(Iterator, Iterator);
+
+void mergeSort(Iterator, Iterator);
 
 #endif /* SORTING_H_ */

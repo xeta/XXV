@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <algorithm>
 #include "Sorting.h"
+#include <string>
 #include <vector>
 #include <sys/time.h>
 #include <ctime>
@@ -11,11 +12,11 @@
 using namespace std;
 
 template<typename Iterator>
-void printArr(Iterator begin, Iterator end){
+void printArr(Iterator begin, Iterator end) {
 	Iterator it;
 	cout << "[";
-	for(Iterator it= begin; it!=end; ++it){
-		if(it!=begin){
+	for (Iterator it = begin; it != end; ++it) {
+		if (it != begin) {
 			cout << ", ";
 		}
 		cout << (*it);
@@ -23,55 +24,43 @@ void printArr(Iterator begin, Iterator end){
 	cout << "]\n";
 }
 
-template<typename Iterator>
-double benchmark(Iterator start, Iterator end ,void (*sort)(Iterator,Iterator)){
+template<typename C>
+double benchmark(C start, C end, void(*sort)(C,C)) {
 	timeval startTime, endTime;
-	gettimeofday(&startTime,0);
+	gettimeofday(&startTime, 0);
 	(*sort)(start,end);
-	gettimeofday(&endTime,0);
-	long seconds  = endTime.tv_sec  - startTime.tv_sec;
+	gettimeofday(&endTime, 0);
+	long seconds = endTime.tv_sec - startTime.tv_sec;
 	long nseconds = endTime.tv_usec - startTime.tv_usec;
-	return seconds + nseconds/1000000.0;
+	return seconds + nseconds / 1000000.0;
 }
 
-typedef int e_type;
-typedef std::vector<int> Collection;
-typedef Collection::iterator Iterator;
 
-void insertion_sort(Iterator start, Iterator end) {
-	e_type buf;
-	Iterator it;
-	for (it = start; it != end; ++it) {
-		Iterator it_p = it - 1;
-		while(*it_p > *(it_p+1)){
-			buf = *it_p;
-			*it_p = *(it_p+1);
-			*(it_p+1) = buf;
-			if(it_p==start){
-				break;
-			}
-			it_p--;
-		}
-	}
+
+
+void test(string name, Generator g, int size, void(*fnc)(Iterator,Iterator)){
+	Collection c = g.generateVector(size);
+	cout << name << "\n";
+	cout << "-----------------------------------------------------------------\n";
+	cout << "Before sorting: ";
+	printArr(c.begin(), c.end());
+
+	double duration = benchmark(c.begin(), c.end(), fnc);
+
+	cout << "After sorting:  " ;
+	printArr(c.begin(), c.end());
+	cout << "-----------------------------------------------------------------\n";
+	printf("Total time: %5.6f seconds\n", duration);
+	cout << "-----------------------------------------------------------------\n";
+	cout << "\n\n";
 }
 
 int main(int argc, char **argv) {
-	// Create vector generator
-	Generator generator(200);
-
-	// Generate vector with 100 elements
-	vector<int> a = generator.generateVector(1000);
-
-	cout << "Before sorting \n";
-	printArr(a.begin(),a.end());
-
-	double duration = benchmark(a.begin(), a.end(), insertion_sort);
-
-	cout << "After sorting \n";
-	printArr(a.begin(),a.end());
-
-	printf("%5.6f seconds\n", duration);
-
+	// Generator, that generates integers from 1..1000
+	Generator g(1000);
+	int size = 50;
+	test("Insertion Sort", g, size, insertionSort);
+	test("Bubble Sort", g, size, bubbleSort);
 
 	return 0;
 }

@@ -13,6 +13,7 @@
 #include <algorithm>
 #include "Sorting.h"
 #include <vector>
+#include <list>
 #include <sys/time.h>
 #include <ctime>
 

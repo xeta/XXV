@@ -1,17 +1,38 @@
 #include "Sorting.h"
 
-void insertion_sort(int *arr, int length) {
-	int buf;
-	for (int i = 1; i < length; i++) {
-		for (int j = i - 1; j >= 0; --j) {
-			if (arr[j + 1] < arr[j]) {
-				buf = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = buf;
-			} else {
-				break;
+void insertionSort(Iterator start, Iterator end) {
+	Iterator j;
+	Iterator i = start;
+	e_type buf = 0;
+
+	for (i = start; i <= end; ++i) {
+		buf = *i;
+		j = i - 1;
+		while ((j >= start) && (*j > buf)) {
+			*(j + 1) = *j;
+			j--;
+		}
+		*(j + 1) = buf;
+	}
+}
+
+void bubbleSort(Iterator start, Iterator end){
+	Iterator j;
+	int temp, flag = 1;
+	while(flag){
+		flag = 0;
+		for(j=start;j<(end-1);j++){
+			if(*(j) > *(j+1)){
+				temp = *(j);
+				*(j) = *(j+1);
+				*(j+1) = temp;
+				flag = 1;
 			}
 		}
 	}
+}
+
+void mergeSort(Iterator start, Iterator end){
+// TODO Merge sort
 }
 
