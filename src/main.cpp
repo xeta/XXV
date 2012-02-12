@@ -41,14 +41,14 @@ double benchmark(C start, C end, void(*sort)(C,C)) {
 void test(string name, Generator g, int size, void(*fnc)(Iterator,Iterator)){
 	Collection c = g.generateVector(size);
 	cout << name << "\n";
-	cout << "-----------------------------------------------------------------\n";
-	cout << "Before sorting: ";
-	printArr(c.begin(), c.end());
+//	cout << "-----------------------------------------------------------------\n";
+//	cout << "Before sorting: ";
+//	printArr(c.begin(), c.end());
 
 	double duration = benchmark(c.begin(), c.end(), fnc);
 
-	cout << "After sorting:  " ;
-	printArr(c.begin(), c.end());
+//	cout << "After sorting:  " ;
+//	printArr(c.begin(), c.end());
 	cout << "-----------------------------------------------------------------\n";
 	printf("Total time: %5.6f seconds\n", duration);
 	cout << "-----------------------------------------------------------------\n";
@@ -61,6 +61,8 @@ int main(int argc, char **argv) {
 	int size = 50;
 	test("Insertion Sort", g, size, insertionSort);
 	test("Bubble Sort", g, size, bubbleSort);
+	test("Merge Sort", g, size, mergeSort);
+	test("STL Sort", g, size, sort);
 
 	return 0;
 }

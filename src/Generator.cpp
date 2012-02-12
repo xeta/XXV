@@ -3,6 +3,7 @@
 using namespace std;
 
 Generator::Generator(int n) {
+	srand((unsigned)time(NULL));
 	this->n = n;
 }
 
