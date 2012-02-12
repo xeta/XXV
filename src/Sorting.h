@@ -22,4 +22,6 @@ void bubbleSort(Iterator, Iterator);
 
 void mergeSort(Iterator, Iterator);
 
+void insertionMergeSort(Iterator, Iterator);
+
 #endif /* SORTING_H_ */

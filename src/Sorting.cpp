@@ -60,7 +60,7 @@ void merge(Iterator start1, Iterator end1, Iterator start2, Iterator end2) {
 }
 
 void mergeSort(Iterator start, Iterator end) {
-	if (start == (end-1))
+	if (start == (end - 1))
 		return;
 	Iterator middle = (end - start) / 2 + start;
 	mergeSort(start, middle);
@@ -68,3 +68,15 @@ void mergeSort(Iterator start, Iterator end) {
 	merge(start, middle, middle, end);
 }
 
+void insertionMergeSort(Iterator start, Iterator end) {
+	int size = end - start;
+	// if collection size less then 50 use insertion sort
+	if (size < 50) {
+		insertionSort(start, end);
+	} else {
+		Iterator middle = size / 2 + start;
+		mergeSort(start, middle);
+		mergeSort(middle, end);
+		merge(start, middle, middle, end);
+	}
+}

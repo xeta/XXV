@@ -25,44 +25,56 @@ void printArr(Iterator begin, Iterator end) {
 }
 
 template<typename C>
-double benchmark(C start, C end, void(*sort)(C,C)) {
+double benchmark(C start, C end, void(*sort)(C, C)) {
 	timeval startTime, endTime;
 	gettimeofday(&startTime, 0);
-	(*sort)(start,end);
+	(*sort)(start, end);
 	gettimeofday(&endTime, 0);
 	long seconds = endTime.tv_sec - startTime.tv_sec;
 	long nseconds = endTime.tv_usec - startTime.tv_usec;
 	return seconds + nseconds / 1000000.0;
 }
 
+bool isSorting(Iterator begin, Iterator end) {
+	while (begin < end - 1) {
+		if (*begin > *(begin + 1))
+			return false;
+		begin++;
+	}
+	return true;
+}
 
+void test(string name, Collection c, void(*fnc)(Iterator, Iterator)) {
 
-
-void test(string name, Generator g, int size, void(*fnc)(Iterator,Iterator)){
-	Collection c = g.generateVector(size);
 	cout << name << "\n";
+
 //	cout << "-----------------------------------------------------------------\n";
 //	cout << "Before sorting: ";
 //	printArr(c.begin(), c.end());
-
 	double duration = benchmark(c.begin(), c.end(), fnc);
 
 //	cout << "After sorting:  " ;
 //	printArr(c.begin(), c.end());
-	cout << "-----------------------------------------------------------------\n";
+
+	if(isSorting(c.begin(), c.end()))
+		cout << "[Done] \n";
+	else
+		cout << "[Fail] \n";
+
 	printf("Total time: %5.6f seconds\n", duration);
 	cout << "-----------------------------------------------------------------\n";
-	cout << "\n\n";
 }
 
 int main(int argc, char **argv) {
 	// Generator, that generates integers from 1..1000
 	Generator g(1000);
-	int size = 50;
-	test("Insertion Sort", g, size, insertionSort);
-	test("Bubble Sort", g, size, bubbleSort);
-	test("Merge Sort", g, size, mergeSort);
-	test("STL Sort", g, size, sort);
+	Collection c = g.generateVector(100);
+
+	test("STL Sort", Collection(c), sort);
+	test("Merge Sort", Collection(c), mergeSort);
+	test("Insertion Merge Sort", Collection(c), insertionMergeSort);
+	test("Insertion Sort", Collection(c), insertionSort);
+	test("Bubble Sort", Collection(c), bubbleSort);
 
 	return 0;
 }
