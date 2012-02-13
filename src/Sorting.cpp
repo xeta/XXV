@@ -56,7 +56,6 @@ void merge(Iterator start1, Iterator end1, Iterator start2, Iterator end2) {
 	if (x2 == c2.end()) {
 		copy(x1, c1.end(), start1);
 	}
-
 }
 
 void mergeSort(Iterator start, Iterator end) {

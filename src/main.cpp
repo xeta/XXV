@@ -8,6 +8,7 @@
 #include <sys/time.h>
 #include <ctime>
 #include "Generator.h"
+#include "heap.h"
 
 using namespace std;
 
@@ -76,5 +77,32 @@ int main(int argc, char **argv) {
 	test("Insertion Sort", Collection(c), insertionSort);
 	test("Bubble Sort", Collection(c), bubbleSort);
 
+//	heap_type xxx[] = {0,1,2,3,4,5,6,7,8,9,10};
+//
+//
+//	cout << "PARENT \n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[1]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[2]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[3]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[4]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[5]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[6]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[7]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[8]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[9]) <<"\n";
+//	cout <<  " " <<*heap_parent(xxx, &xxx[10]) <<"\n";
+//	cout << "LEFT \n";
+//	cout <<  " " <<*heap_left(xxx, &xxx[0]) <<"\n";
+//	cout <<  " " <<*heap_left(xxx, &xxx[1]) <<"\n";
+//	cout <<  " " <<*heap_left(xxx, &xxx[2]) <<"\n";
+//	cout <<  " " <<*heap_left(xxx, &xxx[3]) <<"\n";
+//	cout <<  " " <<*heap_left(xxx, &xxx[4]) <<"\n";
+//	cout << "RIGHT \n";
+//	cout <<  " " <<*heap_right(xxx, &xxx[0]) <<"\n";
+//	cout <<  " " <<*heap_right(xxx, &xxx[1]) <<"\n";
+//	cout <<  " " <<*heap_right(xxx, &xxx[2]) <<"\n";
+//	cout <<  " " <<*heap_right(xxx, &xxx[3]) <<"\n";
+//	cout <<  " " <<*heap_right(xxx, &xxx[4]) <<"\n";
 	return 0;
 }
+
