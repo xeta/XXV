@@ -69,11 +69,13 @@ void test(string name, Collection c, void(*fnc)(Iterator, Iterator)) {
 int main(int argc, char **argv) {
 	// Generator, that generates integers from 1..1000
 	Generator g(1000);
-	Collection c = g.generateVector(100);
+	Collection c = g.generateVector(1000);
 
 	test("STL Sort", Collection(c), sort);
+	//	O(n*ln(2))
 	test("Merge Sort", Collection(c), mergeSort);
 	test("Insertion Merge Sort", Collection(c), insertionMergeSort);
+	//	O(n**2)
 	test("Insertion Sort", Collection(c), insertionSort);
 	test("Bubble Sort", Collection(c), bubbleSort);
 
