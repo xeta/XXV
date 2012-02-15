@@ -4,7 +4,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
-#include "Sorting.h"
 #include <vector>
 #include <sys/time.h>
 #include <ctime>

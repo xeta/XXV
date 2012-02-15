@@ -9,6 +9,7 @@
 #include <ctime>
 #include "Generator.h"
 #include "heap.h"
+#include "gtest/gtest.h"
 
 using namespace std;
 

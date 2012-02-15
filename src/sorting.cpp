@@ -1,4 +1,4 @@
-#include "Sorting.h"
+#include "sorting.h"
 
 void insertionSort(Iterator start, Iterator end) {
 	Iterator j;
