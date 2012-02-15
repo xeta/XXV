@@ -16,5 +16,7 @@ sorting_test.o: $(TEST_DIR)/sorting_test.cpp $(SRC_DIR)/sorting.h
 all_test.o:
 	$(CXX) $(CPPFLAGS) -c $(CXXFLAGS) $(TEST_DIR)/all_test.cpp
 	
+xxx: 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(SRC_DIR)/determinant.cpp -o $(BIN_DIR)/det
 clean:
 	rm -fr *.o

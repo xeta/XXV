@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
-#include "Sorting.h"
+#include "sorting.h"
 #include <string>
 #include <vector>
 #include <sys/time.h>
@@ -67,7 +67,7 @@ void test(string name, Collection c, void(*fnc)(Iterator, Iterator)) {
 	cout << "-----------------------------------------------------------------\n";
 }
 
-int main(int argc, char **argv) {
+int main1(int argc, char **argv) {
 	// Generator, that generates integers from 1..1000
 	Generator g(1000);
 	Collection c = g.generateVector(1000);
