@@ -5,7 +5,7 @@ BIN_DIR = ./bin
 all: sorting_test clean
 
 sorting_test: sorting.o sorting_test.o all_test.o
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread /usr/lib/libgtest.so $^ -o $(BIN_DIR)/$@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lgtest $^ -o $(BIN_DIR)/$@
 	
 sorting.o: $(SRC_DIR)/sorting.cpp $(SRC_DIR)/sorting.h  
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/sorting.cpp
