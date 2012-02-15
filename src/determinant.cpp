@@ -33,7 +33,10 @@ Element determinant(Matrix matrix, int m_size) {
 	for (j = 0; j < m_size; j++) {
 		Matrix new_matrix = down_matrix(matrix, m_size, 0, j);
 		Element x = determinant(new_matrix, new_size);
-		value += matrix[0][j] * x;
+		if((j+1)%2==0)
+			value -= matrix[0][j] * x;
+		else
+			value += matrix[0][j] * x;
 	}
 	return value;
 }
@@ -73,15 +76,16 @@ Matrix createMatrix(int size) {
 int main(int argc, char **argv) {
 	const int size = 3;
 	Matrix m = createMatrix(size);
-	m[0][0] = 1;
-	m[0][1] = 2;
-	m[0][2] = 3;
-	m[1][0] = 4;
-	m[1][1] = 5;
-	m[1][2] = 6;
-	m[2][0] = 7;
-	m[2][1] = 8;
-	m[2][2] = 9;
+
+	m[0][0] = 3;
+	m[0][1] = 1;
+	m[0][2] = 8;
+	m[1][0] = 2;
+	m[1][1] = -5;
+	m[1][2] = 4;
+	m[2][0] = -1;
+	m[2][1] = 6;
+	m[2][2] = -2;
 	printMatrix(m,size);
 	cout << "Determinant = " << determinant(m, size) << endl;
 	return 0;
