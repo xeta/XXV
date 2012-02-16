@@ -1,6 +1,8 @@
 #include <limits.h>
+#include <algorithm>
+#include <gtest/gtest.h>
 #include "../sorting.h"
-#include "gtest/gtest.h"
+#include "../benchmark.h"
 
 template<class T>
 class IncrementGenerator {
@@ -16,30 +18,80 @@ private:
 };
 
 template<class T>
+class DecrementGenerator {
+public:
+	DecrementGenerator(T start) :
+			current(start) {
+	}
+	T operator()() {
+		return current--;
+	}
+private:
+	T current;
+};
+
+template<class T>
 class BasicComporator {
 public:
 	bool operator()(T i, T j) {
-		return i < j;
+		return i > j;
 	}
 };
 
-TEST(InsertionSort, IntegerSort) {
-	int size = 3;
-	Collection x(size);
-	generate(x.begin(), x.end(), IncrementGenerator<int>(0));
+template<class Comp>
+bool isSorting(Iterator begin, Iterator end, Comp comparator) {
+	while (begin < end - 1) {
+		if ((comparator)(*begin, *(begin + 1)))
+			return false;
+		begin++;
+	}
+	return true;
+}
+
+bool isSorting(Iterator begin, Iterator end) {
+	return isSorting(begin, end, BasicComporator<int>());
+}
+
+vector<int> createVector(int size) {
+	vector<int> vect(size);
+	generate(vect.begin(), vect.end(), DecrementGenerator<int>(size));
+	return vect;
+}
+
+const int SIZE = 500;
+
+TEST(Sorting, InsertionSort) {
+	vector<int> x = createVector(SIZE);
+	Benchmark b = Benchmark();
+	b.start();
 	insertionSort(x.begin(), x.end());
-	EXPECT_EQ(0, x[0]);
-	EXPECT_EQ(1, x[1]);
-	EXPECT_EQ(2, x[2]);
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	EXPECT_TRUE(isSorting(x.begin(), x.end()));
 }
 
-TEST(STLSort, IntegerSort) {
-	int size = 3;
-	Collection x(size);
-	generate(x.begin(), x.end(), IncrementGenerator<int>(0));
-	sort(x.begin(), x.end(), BasicComporator<int>());
-	EXPECT_EQ(0, x[0]);
-	EXPECT_EQ(1, x[1]);
-	EXPECT_EQ(2, x[2]);
+TEST(Sorting, BubleSort) {
+	vector<int> x = createVector(SIZE);
+	Benchmark b = Benchmark();
+	b.start();
+	bubbleSort(x.begin(), x.end());
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	EXPECT_TRUE(isSorting(x.begin(), x.end()));
 }
 
+TEST(Sorting, MergeSort) {
+	vector<int> x = createVector(SIZE);
+	Benchmark b = Benchmark();
+	b.start();
+	mergeSort(x.begin(), x.end());
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+}
+
+TEST(Sorting, InsertiobMergeSort) {
+	vector<int> x = createVector(SIZE);
+	Benchmark b = Benchmark();
+	b.start();
+	insertionMergeSort(x.begin(), x.end());
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+}
