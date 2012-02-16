@@ -1,10 +1,3 @@
-/*
- * Generator.h
- *
- *  Created on: 08.02.2012
- *      Author: xeta
- */
-
 #ifndef GENERATOR_H_
 #define GENERATOR_H_
 #include <stdio.h>

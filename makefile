@@ -1,4 +1,4 @@
-TEST_DIR = ./test
+TEST_DIR = ./src/test
 SRC_DIR = ./src
 BIN_DIR = ./bin
 
