@@ -1,7 +1,9 @@
 #include <limits.h>
+#include <vector>
 #include "../src/sorting.h"
 #include "gtest/gtest.h"
 
-TEST(insertionSort,TEST){
+TEST(InsertionSort, Sort){
+
 	EXPECT_TRUE(true);
 }
