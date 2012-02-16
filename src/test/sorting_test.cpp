@@ -1,34 +1,10 @@
 #include <limits.h>
-#include <algorithm>
 #include <gtest/gtest.h>
+#include "test_helper.h"
 #include "../sorting.h"
 #include "../benchmark.h"
 
-template<class T>
-class IncrementGenerator {
-public:
-	IncrementGenerator(T start) :
-			current(start) {
-	}
-	T operator()() {
-		return current++;
-	}
-private:
-	T current;
-};
 
-template<class T>
-class DecrementGenerator {
-public:
-	DecrementGenerator(T start) :
-			current(start) {
-	}
-	T operator()() {
-		return current--;
-	}
-private:
-	T current;
-};
 
 template<class T>
 class BasicComporator {
@@ -52,13 +28,8 @@ bool isSorting(Iterator begin, Iterator end) {
 	return isSorting(begin, end, BasicComporator<int>());
 }
 
-vector<int> createVector(int size) {
-	vector<int> vect(size);
-	generate(vect.begin(), vect.end(), DecrementGenerator<int>(size));
-	return vect;
-}
 
-const int SIZE = 500;
+const unsigned int SIZE = 10000;
 
 TEST(Sorting, InsertionSort) {
 	vector<int> x = createVector(SIZE);
