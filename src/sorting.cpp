@@ -29,65 +29,26 @@ void insertionSort(Iterator start, Iterator end) {
 	} while (--__size > 0);						      \
     } while (0)
 
-#include <stdlib.h>
-#include <iostream>
+
 void void_insertionSort(void const* start, size_t size, size_t total,
 		__compar_d_fn_t cmp) {
 	register char* i = (char*) start;
-	register char* end = &i[size * (total - 1)];
+	register char* end = &i[size * total];
 
 	register char* j;
-	while (i <= end) {
+	register char* j_pr;
+	while (i < end) {
 		j = i;
-		i += size;
-		while (j > start && (*cmp)((void*) j, (void *) (j-size), NULL)) {
-			SWAP(j-size, j, size);
-			j -= size;
+		j_pr = j-size;
+		while (j > start && (*cmp)((void *) j, (void *) (j_pr), NULL)) {
+			SWAP(j_pr, j, size);
+			j = j_pr;
+			j_pr-=size;
 		}
+		i += size;
 	}
 }
 
-//	Iterator j;
-//	Iterator i = start;
-//	typename Iterator::value_type buf;
-//	for (i = start; i <= end; ++i) {
-//			buf = *i;
-//			j = i - 1;
-//			while ((j >= start) && (*j > buf)) {
-//				*(j + 1) = *j;
-//				j--;
-//			}
-//			*(j + 1) = buf;
-//		}
-//}
-
-//int cmp(const void* x, const void* y, void* a) {
-//	return (*(int*) x) < (*(int*) y);
-//}
-
-//void print_a(const int* start, const int* end){
-//	int* x =start, y=end;
-//	while(x<=end){
-//		cout << x++;
-//	}
-//	cout << endl;
-//}
-//int main(int argc, char **argv) {
-//	int xxx[] = { 5, 4, 3, 2, 1 };
-//	int i;
-//	for (i = 0; i < 5; i++) {
-//		cout << xxx[i];
-//
-//	}
-//	cout << endl;
-//	void_insertionSort(xxx, sizeof(int), 5, cmp);
-//	cout << "XXXX " << endl;
-//	for (i = 0; i < 5; i++) {
-//		cout << xxx[i];
-//
-//	}
-//
-//}
 
 void bubbleSort(Iterator start, Iterator end) {
 	Iterator j;

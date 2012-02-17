@@ -26,7 +26,7 @@ bool isSorting(Iterator begin, Iterator end) {
 	return isSorting(begin, end, BasicComporator<int>());
 }
 
-const unsigned int SIZE = 1000;
+const unsigned int SIZE = 10000;
 
 TEST(Sorting, InsertionSort) {
 	vector<int> x = createVector(SIZE);
@@ -76,7 +76,6 @@ TEST(Sorting, VoidInsertionSort) {
 	void_insertionSort(&x[0], sizeof(int), SIZE, cmp);
 	cout << "[ TIME     ] " << b.getTime() << endl;
 	vector<int> a(&x[0], &x[SIZE-1]);
-	cout << x[0] << " " << x[SIZE-1] << endl;
 	EXPECT_TRUE(isSorting(a.begin(),a.end()));
 }
 
