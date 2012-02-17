@@ -5,3 +5,4 @@ vector<int> createVector(int size) {
 	generate(vect.begin(), vect.end(), Generator<int>(size));
 	return vect;
 }
+
