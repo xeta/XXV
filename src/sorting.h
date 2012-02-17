@@ -8,7 +8,7 @@ typedef int e_type;
 typedef std::vector<e_type> Collection;
 typedef Collection::iterator Iterator;
 
-void insertionSort(Iterator, Iterator);
+template< class RandomAccessIterator> void insertionSort(RandomAccessIterator start, RandomAccessIterator end);
 
 void bubbleSort(Iterator, Iterator);
 

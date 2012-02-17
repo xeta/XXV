@@ -73,7 +73,7 @@ Matrix createMatrix(int size) {
 	return matrix;
 }
 
-int main(int argc, char **argv) {
+int main2(int argc, char **argv) {
 	const int size = 3;
 	Matrix m = createMatrix(size);
 

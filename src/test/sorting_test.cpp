@@ -29,7 +29,7 @@ bool isSorting(Iterator begin, Iterator end) {
 }
 
 
-const unsigned int SIZE = 10000;
+const unsigned int SIZE = 1000;
 
 TEST(Sorting, InsertionSort) {
 	vector<int> x = createVector(SIZE);

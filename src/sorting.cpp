@@ -1,19 +1,19 @@
 #include "sorting.h"
 
-void insertionSort(Iterator start, Iterator end) {
-	Iterator j;
-	Iterator i = start;
-	e_type buf = 0;
-
+template< class RandomAccessIterator>
+void insertionSort(RandomAccessIterator start, RandomAccessIterator end){
+	RandomAccessIterator j;
+	RandomAccessIterator i = start;
+	typename RandomAccessIterator::value_type buf;
 	for (i = start; i <= end; ++i) {
-		buf = *i;
-		j = i - 1;
-		while ((j >= start) && (*j > buf)) {
-			*(j + 1) = *j;
-			j--;
+			buf = *i;
+			j = i - 1;
+			while ((j >= start) && (*j > buf)) {
+				*(j + 1) = *j;
+				j--;
+			}
+			*(j + 1) = buf;
 		}
-		*(j + 1) = buf;
-	}
 }
 
 void bubbleSort(Iterator start, Iterator end) {
