@@ -2,8 +2,15 @@
 #define TEST_HELPER_H_
 #include <vector>
 #include <algorithm>
+#include <string>
 
 using namespace std;
+
+struct TestData{
+	unsigned long points;
+	string name;
+	int age;
+};
 
 template<class T>
 class Generator {
@@ -18,6 +25,8 @@ private:
 	T current;
 };
 
-vector<int> createVector(int size);
+vector<int> createVector(size_t size);
+
+TestData* createData(size_t size);
 
 #endif /* TEST_HELPER_H_ */

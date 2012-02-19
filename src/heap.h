@@ -1,11 +1,10 @@
 #ifndef HEAP_H_
 #define HEAP_H_
 
-#define heap_type int
-#define heap_step sizeof(heap_type)
+#include <stddef.h>
 
-heap_type* heap_parent(heap_type*, heap_type*);
-heap_type* heap_left(heap_type*, heap_type*);
-heap_type* heap_right(heap_type*, heap_type*);
+void* heap_parent(const void* root, const  void* node, const size_t size);
+void* heap_left(void* root, void* node, size_t size);
+void* heap_right(void* root, void* node, size_t size);
 
 #endif /* HEAP_H_ */

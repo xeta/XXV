@@ -1,39 +1,36 @@
 #include "heap.h"
+#include <iostream>
 
-struct heap {
-	heap_type* root;
-	unsigned int size;
-};
-
-heap_type* heap_left(heap_type* root, heap_type* node) {
-	return root + ((node - root) << 0x01) + 1;
+void* heap_parent(const void* root, const void* node, const size_t size) {
+	size_t dif = ((char*) node - (char*) root - size) >> 0x01;
+	return ((char*) root) + dif - dif % size;
 }
 
-heap_type* heap_right(heap_type* root, heap_type* node) {
-	return root + ((node - root) << 0x01) + 2;
+void* heap_left(void* root, void* node, const size_t size) {
+	return ((char*) root) + (((char*) node - (char*) root) << 0x01) + size;
 }
 
-heap_type* heap_parent(heap_type* root, heap_type* node) {
-	return root + ((node - root - 1) >> 0x01);
+void* heap_right(void* root, void* node, size_t size) {
+	return (char*) root + (((char*) node - (char*) root) << 0x01) + (size << 0x01);
 }
 
-void max_heapify(heap x, heap_type* node) {
-	heap_type* left = heap_left(x.root, node);
-	heap_type* right = heap_right(x.root, node);
-	heap_type* largest;
-	if (left - x.root < x.size && *node < *left) {
-		largest = left;
-	} else {
-		largest = node;
-	}
-	if (right - x.root < x.size && *node < *right) {
-		largest = right;
-	}
-	if (largest != node) {
-		heap_type buf = *node;
-		*node = *largest;
-		*largest = buf;
-		max_heapify(x, largest);
-	}
-
-}
+//void max_heapify(heap_type* root, heap_type* node, size_t* size) {
+//	heap_type* left = heap_left(root, node);
+//	heap_type* right = heap_right(root, node);
+//	heap_type* largest;
+//	if (left - root < size && *node < *left) {
+//		largest = left;
+//	} else {
+//		largest = node;
+//	}
+//	if (right - root < size && *node < *right) {
+//		largest = right;
+//	}
+//	if (largest != node) {
+//		heap_type buf = *node;
+//		*node = *largest;
+//		*largest = buf;
+//		max_heapify(root, largest, size);
+//	}
+//
+//}

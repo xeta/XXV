@@ -26,7 +26,7 @@ bool isSorting(Iterator begin, Iterator end) {
 	return isSorting(begin, end, BasicComporator<int>());
 }
 
-const unsigned int SIZE = 10000;
+const unsigned int SIZE = 100;
 
 TEST(Sorting, InsertionSort) {
 	vector<int> x = createVector(SIZE);
