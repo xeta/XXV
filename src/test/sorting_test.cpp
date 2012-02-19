@@ -4,14 +4,6 @@
 #include "../sorting.h"
 #include "../benchmark.h"
 
-template<class T>
-class BasicComporator {
-public:
-	bool operator()(T i, T j) {
-		return i > j;
-	}
-};
-
 template<class Comp>
 bool isSorting(Iterator begin, Iterator end, Comp comparator) {
 	while (begin < end - 1) {
@@ -64,7 +56,7 @@ TEST(Sorting, InsertiobMergeSort) {
 	EXPECT_TRUE(isSorting(x.begin(), x.end()));
 }
 
-int cmp(const void* x, const void* y, void* a) {
+int cmp1(const void* x, const void* y) {
 	return (*(int*) x) < (*(int*) y);
 }
 
@@ -73,7 +65,7 @@ TEST(Sorting, VoidInsertionSort) {
 	generate(&x[0], &x[SIZE - 1], Generator<int>(SIZE));
 	Benchmark b = Benchmark();
 	b.start();
-	void_insertionSort(&x[0], sizeof(int), SIZE, cmp);
+	void_insertionSort(&x[0], sizeof(int), SIZE, cmp1);
 	cout << "[ TIME     ] " << b.getTime() << endl;
 	vector<int> a(&x[0], &x[SIZE-1]);
 	EXPECT_TRUE(isSorting(a.begin(),a.end()));

@@ -1,10 +1,11 @@
 #ifndef HEAP_H_
 #define HEAP_H_
 
-#include <stddef.h>
+//#include <stddef.h>
+#include <stdlib.h>
 
 void* heap_parent(const void* root, const  void* node, const size_t size);
-void* heap_left(void* root, void* node, size_t size);
-void* heap_right(void* root, void* node, size_t size);
-
+void* heap_left(const void* root, void* node, size_t size);
+void* heap_right(const void* root, void* node, size_t size);
+void max_heapify(const void* root, void* node, const size_t size, size_t total, __compar_fn_t cmp);
 #endif /* HEAP_H_ */

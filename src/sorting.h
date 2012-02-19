@@ -10,7 +10,7 @@ typedef std::vector<e_type> Collection;
 typedef Collection::iterator Iterator;
 
 void void_insertionSort(void const* start, size_t size, size_t total,
-		__compar_d_fn_t cmp);
+		__compar_fn_t cmp);
 
 void insertionSort(Iterator start, Iterator end);
 

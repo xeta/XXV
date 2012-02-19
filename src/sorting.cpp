@@ -31,7 +31,7 @@ void insertionSort(Iterator start, Iterator end) {
 
 
 void void_insertionSort(void const* start, size_t size, size_t total,
-		__compar_d_fn_t cmp) {
+		__compar_fn_t cmp) {
 	register char* i = (char*) start;
 	register char* end = &i[size * total];
 
@@ -40,7 +40,7 @@ void void_insertionSort(void const* start, size_t size, size_t total,
 	while (i < end) {
 		j = i;
 		j_pr = j-size;
-		while (j > start && (*cmp)((void *) j, (void *) (j_pr), NULL)) {
+		while (j > start && (*cmp)((void *) j, (void *) (j_pr))) {
 			SWAP(j_pr, j, size);
 			j = j_pr;
 			j_pr-=size;
