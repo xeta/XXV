@@ -1,6 +1,6 @@
 #include "heap.h"
 #include <iostream>
-#include "sorting.h"
+#include "./sorting/sorting.h"
 
 /* Byte-wise swap two items of size SIZE. */
 #define SWAP(a, b, size)						      \

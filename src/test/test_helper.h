@@ -67,6 +67,6 @@ void print(const int* arr, size_t total);
 void EXPECT_ARRAY(const void* expected, const void* actual, size_t size,
 		size_t total);
 
-int int_comporator(const void* x, const void* y);
+int int_comporator(__const void* x, __const void* y);
 
 #endif /* TEST_HELPER_H_ */

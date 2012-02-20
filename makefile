@@ -10,13 +10,13 @@ test: heap.o sorting.o sorting_test.o heap_test.o benchmark.o test_helper.o
 benchmark.o: $(SRC_DIR)/benchmark.cpp $(SRC_DIR)/benchmark.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/benchmark.cpp
 
-sorting.o: $(SRC_DIR)/sorting.cpp $(SRC_DIR)/sorting.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/sorting.cpp
+sorting.o: $(SRC_DIR)/sorting/sorting.cpp $(SRC_DIR)/sorting/sorting.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/sorting/sorting.cpp
 
 heap.o: $(SRC_DIR)/heap.cpp $(SRC_DIR)/heap.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/heap.cpp
 	
-sorting_test.o: $(TEST_DIR)/sorting_test.cpp $(SRC_DIR)/sorting.h
+sorting_test.o: $(TEST_DIR)/sorting_test.cpp $(SRC_DIR)/sorting/sorting.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/sorting_test.cpp
 
 heap_test.o: $(TEST_DIR)/heap_test.cpp $(SRC_DIR)/heap.h

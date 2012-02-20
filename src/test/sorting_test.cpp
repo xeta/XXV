@@ -1,7 +1,8 @@
 #include <limits.h>
 #include <gtest/gtest.h>
 #include "test_helper.h"
-#include "../sorting.h"
+#include "../sorting/sorting.h"
+
 #include "../benchmark.h"
 
 template<class Comp>
@@ -56,18 +57,14 @@ TEST(Sorting, InsertiobMergeSort) {
 	EXPECT_TRUE(isSorting(x.begin(), x.end()));
 }
 
-int cmp1(const void* x, const void* y) {
-	return (*(int*) x) < (*(int*) y);
-}
-
 TEST(Sorting, VoidInsertionSort) {
 	int x[SIZE];
 	generate(&x[0], &x[SIZE - 1], Generator<int>(SIZE));
 	Benchmark b = Benchmark();
 	b.start();
-	void_insertionSort(&x[0], sizeof(int), SIZE, cmp1);
+	void_insertionSort(&x[0], sizeof(int), SIZE, int_comporator);
 	cout << "[ TIME     ] " << b.getTime() << endl;
-	vector<int> a(&x[0], &x[SIZE-1]);
+	vector<int> a(&x[0], &x[SIZE - 1]);
 	EXPECT_TRUE(isSorting(a.begin(),a.end()));
 }
 
@@ -78,4 +75,12 @@ TEST(Sorting, Sort) {
 	sort(x.begin(), x.end());
 	cout << "[ TIME     ] " << b.getTime() << endl;
 	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+}
+
+TEST(HEAP, Sort) {
+	int size = 4;
+	int actual[] = { 3, 2, 1, 0 };
+	int expected[] = { 0, 1, 2, 3 };
+	HeapSort(_INT, int_comporator)(actual, size);
+	EXPECT_ARRAY(expected, actual, _INT, size);
 }

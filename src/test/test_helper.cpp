@@ -13,7 +13,7 @@ void EXPECT_ARRAY(const void* expected, const void* actual, size_t size,
 	}
 }
 
-int int_comporator(const void* x, const void* y) {
+int int_comporator(__const void* x, __const void* y) {
 	return (*(int*) x) < (*(int*) y);
 }
 
@@ -42,6 +42,6 @@ void print(const void* arr, size_t size, size_t total,
 }
 
 void print(const int* arr, size_t total) {
-	print(arr, sizeof(int), total, int_printer);
+	print(arr, _INT, total, int_printer);
 }
 
