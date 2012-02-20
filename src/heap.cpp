@@ -21,15 +21,15 @@ void* heap_parent(const void* root, const void* node, const size_t size) {
 	return ((char*) root) + dif - dif % size;
 }
 
-void* heap_left(const void* root, void* node, const size_t size) {
+void* heap_left(const void* root, const void* node, const size_t size) {
 	return ((char*) root) + (((char*) node - (char*) root) << 0x01) + size;
 }
 
-void* heap_right(const void* root, void* node, size_t size) {
+void* heap_right(const void* root, const void* node, size_t size) {
 	return (char*) root + (((char*) node - (char*) root + size) << 0x01);
 }
 
-void max_heapify(const void* root, void* node, const size_t size, size_t total,
+void max_heapify(const void* root, const void* node, const size_t size, size_t total,
 		__compar_fn_t cmp) {
 	register char* _root = (char*) root;
 	register char* _left = (char*) heap_left(root, node, size);
@@ -50,19 +50,12 @@ void max_heapify(const void* root, void* node, const size_t size, size_t total,
 	}
 }
 
-//	if (left - root < size && *node < *left) {
-//		largest = left;
-//	} else {
-//		largest = node;
-//	}
-//	if (right - root < size && *node < *right) {
-//		largest = right;
-//	}
-//	if (largest != node) {
-//		heap_type buf = *node;
-//		*node = *largest;
-//		*largest = buf;
-//		max_heapify(root, largest, size);
-//	}
-//
-//}
+void build_heap(const void* root, size_t size, size_t total,
+		__compar_fn_t cmp) {
+	char* _root = (char*) root;
+	char* _mid = (char*) heap_parent(_root, _root + size * total, size);
+	while (_mid >= _root) {
+		max_heapify(_root, _mid, size, total, cmp);
+		_mid -= size;
+	}
+}

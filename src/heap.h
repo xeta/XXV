@@ -4,8 +4,10 @@
 //#include <stddef.h>
 #include <stdlib.h>
 
-void* heap_parent(const void* root, const  void* node, const size_t size);
-void* heap_left(const void* root, void* node, size_t size);
-void* heap_right(const void* root, void* node, size_t size);
-void max_heapify(const void* root, void* node, const size_t size, size_t total, __compar_fn_t cmp);
+void* heap_parent(const void* root, const void* node, const size_t size);
+void* heap_left(const void* root, const void* node, size_t size);
+void* heap_right(const void* root, const void* node, size_t size);
+void max_heapify(const void* root, const void* node, const size_t size, size_t total,
+		__compar_fn_t cmp);
+void build_heap(const void* root, size_t size, size_t total, __compar_fn_t cmp);
 #endif /* HEAP_H_ */

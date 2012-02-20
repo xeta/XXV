@@ -6,18 +6,18 @@
 
 using namespace std;
 
+struct TestData{
+	unsigned long points;
+	string name;
+	int age;
+};
+
 template<class T>
 class BasicComporator {
 public:
 	int operator()(T i, T j) {
 		return i > j;
 	}
-};
-
-struct TestData{
-	unsigned long points;
-	string name;
-	int age;
 };
 
 template<class T>
