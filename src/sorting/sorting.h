@@ -3,13 +3,12 @@
 #include <vector>
 #include <stdlib.h>
 #include "HeapSort.h"
-
+#include <string.h>
 using namespace std;
 
 typedef int e_type;
 typedef std::vector<e_type> Collection;
 typedef Collection::iterator Iterator;
-
 
 /* Byte-wise swap two items of size SIZE. */
 #define SWAP(a, b, size)						      \
@@ -25,11 +24,12 @@ typedef Collection::iterator Iterator;
 	} while (--__size > 0);						      \
     } while (0)
 
-
-typedef int (*__comporator) (__const void *, __const void *);
+typedef int (*__comporator)(__const void *, __const void *);
 
 void void_insertionSort(void const* start, size_t size, size_t total,
 		__compar_fn_t cmp);
+void void_mergeSort(const void* _root, const size_t size, const size_t total,
+		__comporator cmp);
 
 void insertionSort(Iterator start, Iterator end);
 

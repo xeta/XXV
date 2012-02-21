@@ -19,7 +19,7 @@ bool isSorting(Iterator begin, Iterator end) {
 	return isSorting(begin, end, BasicComporator<int>());
 }
 
-const unsigned int SIZE = 100;
+const unsigned int SIZE = 10;
 
 TEST(Sorting, InsertionSort) {
 	vector<int> x = createVector(SIZE);
@@ -77,10 +77,15 @@ TEST(Sorting, Sort) {
 	EXPECT_TRUE(isSorting(x.begin(), x.end()));
 }
 
-TEST(HEAP, Sort) {
-	int size = 4;
-	int actual[] = { 3, 2, 1, 0 };
-	int expected[] = { 0, 1, 2, 3 };
-	HeapSort(_INT, int_comporator)(actual, size);
-	EXPECT_ARRAY(expected, actual, _INT, size);
+TEST(Sorting, VoidMergeSort) {
+	int SIZE=3;
+	int x[SIZE];
+	generate(&x[0], &x[SIZE - 1], Generator<int>(SIZE));
+	Benchmark b = Benchmark();
+	b.start();
+	void_mergeSort(&x[0], sizeof(int), SIZE, int_comporator);
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	vector<int> a(&x[0], &x[SIZE - 1]);
+	print(x,SIZE);
+	EXPECT_TRUE(isSorting(a.begin(),a.end()));
 }
