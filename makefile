@@ -4,7 +4,7 @@ BIN_DIR = ./bin
 
 all: test clean
 
-test: heap.o sorting.o sorting_test.o heap_test.o benchmark.o test_helper.o
+test: heap.o sorting.o sorting_test.o HeapSort.o heap_test.o benchmark.o test_helper.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lgtest -lgtest_main $^ -o $(BIN_DIR)/$@
 	
 benchmark.o: $(SRC_DIR)/benchmark.cpp $(SRC_DIR)/benchmark.h
@@ -12,6 +12,9 @@ benchmark.o: $(SRC_DIR)/benchmark.cpp $(SRC_DIR)/benchmark.h
 
 sorting.o: $(SRC_DIR)/sorting/sorting.cpp $(SRC_DIR)/sorting/sorting.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/sorting/sorting.cpp
+
+HeapSort.o: $(SRC_DIR)/sorting/HeapSort.cpp $(SRC_DIR)/sorting/HeapSort.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/sorting/HeapSort.cpp
 
 heap.o: $(SRC_DIR)/heap.cpp $(SRC_DIR)/heap.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/heap.cpp
