@@ -31,6 +31,9 @@ void void_insertionSort(void const* start, size_t size, size_t total,
 void void_mergeSort(const void* _root, const size_t size, const size_t total,
 		__comporator cmp);
 
+void heap_sort_temp(const void* root, const size_t size, const size_t total,
+		__comporator cmp);
+
 void insertionSort(Iterator start, Iterator end);
 
 void bubbleSort(Iterator, Iterator);
@@ -38,5 +41,8 @@ void bubbleSort(Iterator, Iterator);
 void mergeSort(Iterator, Iterator);
 
 void insertionMergeSort(Iterator, Iterator);
+
+void heap_sort(const void* root, const size_t size, const size_t total,
+		__comporator cmp);
 
 #endif /* SORTING_H_ */

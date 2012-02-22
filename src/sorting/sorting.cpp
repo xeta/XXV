@@ -98,7 +98,6 @@ void mergeSort(Iterator start, Iterator end) {
 	mergeSort(middle, end);
 	merge(start, middle, middle, end);
 }
-#include <iostream>
 
 void void_merge(const void* _start, const void* _middle, const void* _end,
 		const size_t size, __comporator cmp) {
@@ -107,21 +106,20 @@ void void_merge(const void* _start, const void* _middle, const void* _end,
 	size_t left_size = (char*) _middle - iterator;
 	size_t right_size = (char*) _end - (char*) _middle;
 
-	char* left_buffer = (char*) malloc(left_size);
+	register char* left_buffer = (char*) malloc(left_size);
 	memcpy(left_buffer, iterator, left_size);
-
-	char* right_buffer = (char*) malloc(right_size);
-	memcpy(right_buffer, (char*) _start + left_size, right_size);
-
 	char* left_buffer_end = left_buffer + left_size;
+
+	register char* right_buffer = (char*) malloc(right_size);
+	memcpy(right_buffer, (char*) _start + left_size, right_size);
 	char* right_buffer_end = right_buffer + right_size;
 
 	while (left_buffer < left_buffer_end && right_buffer < right_buffer_end) {
 		if ((cmp)(left_buffer, right_buffer)) {
-			SWAP(left_buffer, iterator, size);
+			memcpy(iterator, left_buffer, size);
 			left_buffer += size;
 		} else {
-			SWAP(right_buffer, iterator, size);
+			memcpy(iterator, right_buffer, size);
 			right_buffer += size;
 		}
 		iterator += size;
@@ -168,3 +166,36 @@ void insertionMergeSort(Iterator start, Iterator end) {
 		merge(start, middle, middle, end);
 	}
 }
+
+void heap_sort_temp(const void* root, const size_t size,  size_t total,
+		__comporator cmp) {
+	size_t _total = total;
+	char* _first = (char*) root;
+	char* _last = _first + (total - 1) * size;
+
+	// Create heap structure from root poiter
+	build_heap(root, size, total, cmp);
+
+	while (_total > 1) {
+		SWAP(_first, _last, size);
+		_total--;
+		_last -= size;
+		max_heapify(_first, _first, size, _total, cmp);
+	}
+}
+void heap_sort(const void* root, const size_t size, const size_t total,
+		__comporator cmp) {
+	register char* _first = (char*) root;
+	char* end = _first + total * size;
+	register char* _last = end - size;
+
+	// Create heap structure from root poiter
+	build_heap(root, size, total, cmp);
+
+	while (_first != _last) {
+		SWAP(_first, _last, size);
+		_last -= size;
+		max_heapify(_first, _first, _last, size, cmp);
+	}
+}
+

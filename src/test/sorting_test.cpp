@@ -99,3 +99,29 @@ TEST(Sorting, HeapSort) {
 	vector<int> a(&x[0], &x[SIZE]);
 	EXPECT_TRUE(isSorting(a.begin(),a.end()));
 }
+TEST(Sorting, HeapSort1) {
+	int x[SIZE];
+	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
+	Benchmark b = Benchmark();
+	b.start();
+	heap_sort_temp(x, _INT, SIZE, int_comporator);
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	vector<int> a(&x[0], &x[SIZE]);
+	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+
+}
+TEST(Sorting, HeapSort2) {
+	int SIZE=15;
+	int x[SIZE];
+	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
+//	HeapSort xx(_INT, int_comporator);
+	Benchmark b = Benchmark();
+	b.start();
+//	(xx)(x, SIZE);
+	print(x,SIZE);
+	heap_sort(x, _INT, SIZE, int_comporator);
+	print(x,SIZE);
+	cout << "[ TIME     ] " << b.getTime() << endl;
+	vector<int> a(&x[0], &x[SIZE]);
+	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+}
