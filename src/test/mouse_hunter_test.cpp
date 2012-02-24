@@ -11,7 +11,7 @@ void shootgun(const void* pt) {
 }
 
 TEST(MouseHunter, test) {
-	size_t total = 10;
+	size_t total = 20;
 	int* start = (int*) malloc(_INT * total);
 	int* end = (int*) start + total;
 	fill(start, end, 1);
