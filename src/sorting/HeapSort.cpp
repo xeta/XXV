@@ -14,6 +14,6 @@ void HeapSort::operator()(const void* _root, size_t _total) {
 		SWAP(_first, _last, _size);
 		_total--;
 		_last -= size;
-		max_heapify(_first, _first, _size, _total, this->cmp);
+		max_heapifyXXX(_first, _first, _size, _total, this->cmp);
 	}
 }

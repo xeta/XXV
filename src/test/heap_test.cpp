@@ -90,21 +90,21 @@ TEST(Heap,Right) {
 TEST(Heap, MaxHepify_1) {
 	int actual[] = { 2, 1, 3 };
 	int expected[] = { 3, 1, 2 };
-	max_heapify(actual, actual, _INT, 3, int_comporator);
+	max_heapifyXXX(actual, actual, _INT, 3, int_comporator);
 	EXPECT_ARRAY(expected, actual, _INT, 3);
 }
 
 TEST(HEAP, MaxHepify_2) {
 	int actual[] = { 0, 4, 3, 2, 1 };
 	int expected[] = { 4, 2, 3, 0, 1 };
-	max_heapify(actual, actual, _INT, 5, int_comporator);
+	max_heapifyXXX(actual, actual, _INT, 5, int_comporator);
 	EXPECT_ARRAY(expected, actual, _INT, 5);
 }
 
 TEST(HEAP, MaxHepify_3) {
 	int actual[] = { 4, 0, 3, 1, 2 };
 	int expected[] = { 4, 2, 3, 1, 0 };
-	max_heapify(actual, &actual[1], _INT, 5, int_comporator);
+	max_heapifyXXX(actual, &actual[1], _INT, 5, int_comporator);
 	EXPECT_ARRAY(expected, actual, _INT, 5);
 }
 

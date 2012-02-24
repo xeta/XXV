@@ -44,5 +44,6 @@ void insertionMergeSort(Iterator, Iterator);
 
 void heap_sort(const void* root, const size_t size, const size_t total,
 		__comporator cmp);
-
+void heap_sort_xxx(const void* root, const size_t size, const size_t total,
+		__comporator cmp);
 #endif /* SORTING_H_ */

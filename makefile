@@ -7,6 +7,15 @@ all: test clean
 test: heap.o sorting.o sorting_test.o HeapSort.o heap_test.o benchmark.o test_helper.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lgtest -lgtest_main $^ -o $(BIN_DIR)/$@
 	
+mouse_hunter_test: MouseHunter.o test_helper.o mouse_hunter_test.o
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lgtest -lgtest_main $^ -o $(BIN_DIR)/$@
+	
+MouseHunter.o: $(SRC_DIR)/other/MouseHunter.cpp $(SRC_DIR)/other/MouseHunter.h
+	$(CXX) $(SRC_DIR)/other/MouseHunter.cpp -c $(SRC_DIR)/other/MouseHunter.h
+	
+mouse_hunter_test.o: $(TEST_DIR)/mouse_hunter_test.cpp $(SRC_DIR)/other/MouseHunter.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/mouse_hunter_test.cpp
+	
 benchmark.o: $(SRC_DIR)/benchmark.cpp $(SRC_DIR)/benchmark.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/benchmark.cpp
 

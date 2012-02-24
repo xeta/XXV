@@ -180,7 +180,7 @@ void heap_sort_temp(const void* root, const size_t size,  size_t total,
 		SWAP(_first, _last, size);
 		_total--;
 		_last -= size;
-		max_heapify(_first, _first, size, _total, cmp);
+		max_heapifyXXX(_first, _first, size, _total, cmp);
 	}
 }
 void heap_sort(const void* root, const size_t size, const size_t total,
@@ -195,7 +195,24 @@ void heap_sort(const void* root, const size_t size, const size_t total,
 	while (_first != _last) {
 		SWAP(_first, _last, size);
 		_last -= size;
-		max_heapify(_first, _first, _last, size, cmp);
+		max_heapify(_first, _first, _last+size, size, cmp);
 	}
 }
+
+void heap_sort_xxx(const void* root, const size_t size, const size_t total,
+		__comporator cmp) {
+	register char* _first = (char*) root;
+	char* end = _first + total * size;
+	register char* _last = end - size;
+
+	// Create heap structure from root poiter
+	build_heap2(root, size, total, cmp);
+
+	while (_first != _last) {
+		SWAP(_first, _last, size);
+		_last -= size;
+		max_heapify2(_first, _first, _last+size, size, cmp);
+	}
+}
+
 

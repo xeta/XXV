@@ -19,108 +19,113 @@ bool isSorting(Iterator begin, Iterator end) {
 	return isSorting(begin, end, BasicComporator<int>());
 }
 
-const unsigned int SIZE = 1000;
+const unsigned int SIZE = 1000000;
 
-TEST(Sorting, InsertionSort) {
-	vector<int> x = createVector(SIZE);
-	Benchmark b = Benchmark();
-	b.start();
-	insertionSort(x.begin(), x.end());
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	EXPECT_TRUE(isSorting(x.begin(), x.end()));
-}
+//TEST(Sorting, InsertionSort) {
+//	vector<int> x = createVector(SIZE);
+//	Benchmark b = Benchmark();
+//	b.start();
+//	insertionSort(x.begin(), x.end());
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+//}
+//
+//TEST(Sorting, BubleSort) {
+//	vector<int> x = createVector(SIZE);
+//	Benchmark b = Benchmark();
+//	b.start();
+//	bubbleSort(x.begin(), x.end());
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+//}
 
-TEST(Sorting, BubleSort) {
-	vector<int> x = createVector(SIZE);
-	Benchmark b = Benchmark();
-	b.start();
-	bubbleSort(x.begin(), x.end());
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	EXPECT_TRUE(isSorting(x.begin(), x.end()));
-}
+//TEST(Sorting, MergeSort) {
+//	vector<int> x = createVector(SIZE);
+//	Benchmark b = Benchmark();
+//	b.start();
+//	mergeSort(x.begin(), x.end());
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+//}
+//
+//TEST(Sorting, InsertiobMergeSort) {
+//	vector<int> x = createVector(SIZE);
+//	Benchmark b = Benchmark();
+//	b.start();
+//	insertionMergeSort(x.begin(), x.end());
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+//}
 
-TEST(Sorting, MergeSort) {
-	vector<int> x = createVector(SIZE);
-	Benchmark b = Benchmark();
-	b.start();
-	mergeSort(x.begin(), x.end());
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	EXPECT_TRUE(isSorting(x.begin(), x.end()));
-}
+//TEST(Sorting, VoidInsertionSort) {
+//	int x[SIZE];
+//	generate(&x[0], &x[SIZE - 1], Generator<int>(SIZE));
+//	Benchmark b = Benchmark();
+//	b.start();
+//	void_insertionSort(&x[0], sizeof(int), SIZE, int_comporator);
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	vector<int> a(&x[0], &x[SIZE - 1]);
+//	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+//}
 
-TEST(Sorting, InsertiobMergeSort) {
-	vector<int> x = createVector(SIZE);
-	Benchmark b = Benchmark();
-	b.start();
-	insertionMergeSort(x.begin(), x.end());
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	EXPECT_TRUE(isSorting(x.begin(), x.end()));
-}
-
-TEST(Sorting, VoidInsertionSort) {
-	int x[SIZE];
-	generate(&x[0], &x[SIZE - 1], Generator<int>(SIZE));
-	Benchmark b = Benchmark();
-	b.start();
-	void_insertionSort(&x[0], sizeof(int), SIZE, int_comporator);
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	vector<int> a(&x[0], &x[SIZE - 1]);
-	EXPECT_TRUE(isSorting(a.begin(),a.end()));
-}
-
-TEST(Sorting, Sort) {
-	vector<int> x = createVector(SIZE);
-	Benchmark b = Benchmark();
-	b.start();
-	sort(x.begin(), x.end());
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	EXPECT_TRUE(isSorting(x.begin(), x.end()));
-}
-
-TEST(Sorting, VoidMergeSort) {
-	int x[SIZE];
-	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
-	Benchmark b = Benchmark();
-	b.start();
-	void_mergeSort(&x[0], sizeof(int), SIZE, int_comporator);
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	vector<int> a(&x[0], &x[SIZE]);
-	EXPECT_TRUE(isSorting(a.begin(),a.end()));
-}
-
-TEST(Sorting, HeapSort) {
-	int x[SIZE];
-	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
-	HeapSort xx(_INT, int_comporator);
-	Benchmark b = Benchmark();
-	b.start();
-	(xx)(x, SIZE);
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	vector<int> a(&x[0], &x[SIZE]);
-	EXPECT_TRUE(isSorting(a.begin(),a.end()));
-}
-TEST(Sorting, HeapSort1) {
-	int x[SIZE];
-	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
-	Benchmark b = Benchmark();
-	b.start();
-	heap_sort_temp(x, _INT, SIZE, int_comporator);
-	cout << "[ TIME     ] " << b.getTime() << endl;
-	vector<int> a(&x[0], &x[SIZE]);
-	EXPECT_TRUE(isSorting(a.begin(),a.end()));
-
-}
-TEST(Sorting, HeapSort2) {
-	int SIZE=15;
-	int x[SIZE];
-	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
+//TEST(Sorting, Sort) {
+//	vector<int> x = createVector(SIZE);
+//	Benchmark b = Benchmark();
+//	b.start();
+//	sort(x.begin(), x.end());
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	EXPECT_TRUE(isSorting(x.begin(), x.end()));
+//}
+//
+//TEST(Sorting, VoidMergeSort) {
+//	int x[SIZE];
+//	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
+//	Benchmark b = Benchmark();
+//	b.start();
+//	void_mergeSort(&x[0], _INT, SIZE, int_comporator);
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	vector<int> a(&x[0], &x[SIZE]);
+//	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+//}
+//
+//TEST(Sorting, HeapSort) {
+//	int x[SIZE];
+//	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
 //	HeapSort xx(_INT, int_comporator);
+//	Benchmark b = Benchmark();
+//	b.start();
+//	(xx)(x, SIZE);
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	vector<int> a(&x[0], &x[SIZE]);
+//	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+//}
+//TEST(Sorting, HeapSort1) {
+//	int x[SIZE];
+//	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
+//	Benchmark b = Benchmark();
+//	b.start();
+//	heap_sort_temp(x, _INT, SIZE, int_comporator);
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	vector<int> a(&x[0], &x[SIZE]);
+//	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+//
+//}
+//TEST(Sorting, HeapSort2) {
+//	int x[SIZE];
+//	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
+//	Benchmark b = Benchmark();
+//	b.start();
+//	heap_sort(x, _INT, SIZE, int_comporator);
+//	cout << "[ TIME     ] " << b.getTime() << endl;
+//	vector<int> a(&x[0], &x[SIZE]);
+//	EXPECT_TRUE(isSorting(a.begin(),a.end()));
+//}
+TEST(Sorting, HeapSort3) {
+	int x[SIZE];
+	generate(&x[0], &x[SIZE], Generator<int>(SIZE));
 	Benchmark b = Benchmark();
 	b.start();
-//	(xx)(x, SIZE);
-	print(x,SIZE);
-	heap_sort(x, _INT, SIZE, int_comporator);
-	print(x,SIZE);
+	heap_sort_xxx(x, _INT, SIZE, int_comporator);
 	cout << "[ TIME     ] " << b.getTime() << endl;
 	vector<int> a(&x[0], &x[SIZE]);
 	EXPECT_TRUE(isSorting(a.begin(),a.end()));
