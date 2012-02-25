@@ -1,18 +1,18 @@
 #include "../test_helper.h"
 #include "../../src/sorting/sorting.h"
 
-void test_sorter(__sorter sorter, void * const start, void * const end,
-		size_t size, __comporator cmp) {
-	Benchmark b = Benchmark();
-	b.start();
-	(sorter)(start, end, size, cmp);
-	cout << b.getTime() << "\t";
-	EXPECT_TRUE(isSorted(start, end,size,cmp));
-}
-
+Benchmark BM = Benchmark();
 const int _1000 = 1000;
 const int _10000 = 10000;
 const int _100000 = 100000;
+
+void test_sorter(__sorter sorter, void * const start, void * const end,
+		size_t size, __comporator cmp) {
+	BM.start();
+	(sorter)(start, end, size, cmp);
+	cout << BM.getTime() << "\t";
+	EXPECT_TRUE(isSorted(start, end,size,cmp));
+}
 
 void reverse_test_int_sorter(size_t size, __sorter sorter) {
 	int* array = craeteInverseArray(size);
