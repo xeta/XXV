@@ -2,6 +2,17 @@
 
 namespace algorithm {
 
+MouseHunter::MouseHunter(void* start, void* end, size_t size,
+		__shootgun shootgun, __is_true is_true, __printer printer) {
+	this->start = (char*) start;
+	this->end = (char*) end;
+	this->size = size;
+	this->delta = 1;
+	this->shootgun = shootgun;
+	this->is_true = is_true;
+	this->printer = printer;
+}
+
 MouseHunter::~MouseHunter() {
 }
 
@@ -13,7 +24,6 @@ void MouseHunter::printStep() {
 		iterator += this->size;
 	}
 	cout << endl;
-
 }
 
 void MouseHunter::hunt() {

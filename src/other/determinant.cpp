@@ -1,8 +1,9 @@
 #include <vector>
 #include <iostream>
-
+// TODO Create test for this code
 using namespace std;
 
+//TODO rewrite to void pointers
 typedef int Element;
 typedef vector<Element> Row;
 typedef vector<Row> Matrix;

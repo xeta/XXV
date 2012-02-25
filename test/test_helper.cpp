@@ -1,5 +1,21 @@
 #include "test_helper.h"
 
+bool isSorted(const void* begin, const void* end, size_t size,
+		__comporator cmp) {
+	register char* it = (char*) begin;
+	register char* next = it + size;
+	while (it != (char*) end - size) {
+		if (!cmp(it, next))
+			return false;
+		it = next;
+		next += size;
+	}
+	return true;
+}
+
+bool isSorted(const int* begin, size_t total) {
+	return isSorted(begin, begin + total, _INT, intComporator);
+}
 
 void EXPECT_ARRAY(const void* expected, const void* actual, size_t size,
 		size_t total) {
@@ -13,14 +29,14 @@ void EXPECT_ARRAY(const void* expected, const void* actual, size_t size,
 	}
 }
 
-int int_comporator(__const void* x, __const void* y) {
+int intComporator(__const void* x, __const void* y) {
 	return (*(int*) x) < (*(int*) y);
 }
 
-vector<int> createVector(size_t size) {
-	vector<int> vect(size);
-	generate(vect.begin(), vect.end(), Generator<int>(size));
-	return vect;
+int* craeteInverseArray(size_t total) {
+	int* data = (int*) malloc(total * _INT);
+	generate(data, data + total, ReverceGenerator<int>(total));
+	return data;
 }
 
 /**
