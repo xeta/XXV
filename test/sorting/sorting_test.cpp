@@ -23,7 +23,7 @@ TEST(Sorting, InsertionSort) {
 	free(array);
 }
 
-TEST(Sorting, VoidMergeSort) {
+TEST(Sorting, MergeSort) {
 	int* array = craeteInverseArray(SIZE);
 	test_sort(mergeSort, array, array + SIZE, _INT, intComporator);
 	free(array);

@@ -1,5 +1,5 @@
 #include "../test_helper.h"
-#include "../../src/heap.h"
+#include "../../src/sorting/heap.h"
 
 TEST(Heap, MaxHepify) {
 	int actual[] = { 2, 1, 3 };
