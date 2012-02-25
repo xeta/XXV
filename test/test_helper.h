@@ -3,6 +3,8 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 #include <iostream>
+#include <sys/time.h>
+#include <ctime>
 #include "../src/general.h"
 #include "benchmark.h"
 
@@ -25,7 +27,7 @@ struct TestData {
 };
 
 // Класс для создания массива чисел
-template<class T>
+template <typename T>
 class ReverceGenerator {
 public:
 	ReverceGenerator(T start) :
@@ -38,7 +40,23 @@ private:
 	T current;
 };
 
+class RandomGenerator {
+public:
+	RandomGenerator(int max) :
+			max(max) {
+		srand((unsigned) time(NULL));
+	}
+	int operator()() {
+		return rand() % this->max--;
+	}
+private:
+	int max;
+};
+
 int* craeteInverseArray(size_t total);
+
+int* craeteRandomArray(size_t total);
+
 
 //class TestGenerator {
 //public:
@@ -56,7 +74,6 @@ int* craeteInverseArray(size_t total);
 //private:
 //	unsigned long current;
 //};
-
 
 void int_printer(const void* _pt);
 

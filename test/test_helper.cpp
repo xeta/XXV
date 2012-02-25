@@ -30,12 +30,18 @@ void EXPECT_ARRAY(const void* expected, const void* actual, size_t size,
 }
 
 int intComporator(__const void* x, __const void* y) {
-	return (*(int*) x) < (*(int*) y);
+	return (*(int*) x) <= (*(int*) y);
 }
 
 int* craeteInverseArray(size_t total) {
 	int* data = (int*) malloc(total * _INT);
 	generate(data, data + total, ReverceGenerator<int>(total));
+	return data;
+}
+
+int* craeteRandomArray(size_t total) {
+	int* data = (int*) malloc(total * _INT);
+	generate(data, data + total, RandomGenerator(total));
 	return data;
 }
 

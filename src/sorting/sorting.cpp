@@ -1,6 +1,6 @@
 #include "sorting.h"
 
-void heap_sort(void * const root, void * const end, size_t size,
+void heapSort(void * const root, void * const end, size_t size,
 		__comporator cmp) {
 	register char* _first = (char*) root;
 	register char* _last = (char*) end - size;

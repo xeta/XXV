@@ -13,7 +13,7 @@ void insertionSort(void * const _start, void * const _end, size_t size,
 		__comporator cmp);
 void mergeSort(void * const _start, void* const _end, size_t size,
 		__comporator cmp);
-void heap_sort(void * const root, void * const end, size_t size,
+void heapSort(void * const root, void * const end, size_t size,
 		__comporator cmp);
 
 #endif /* SORTING_H_ */
