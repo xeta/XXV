@@ -49,6 +49,7 @@ TEST(Sorting, InverseOrderSort) {
 	cout << "[ TIME     ] " << "1000    \t10000   \t100000" << endl;
 	reverse_test_int_sorter("heapSort", heapSort);
 	reverse_test_int_sorter("mergeSort", mergeSort);
+	reverse_test_int_sorter("quickSort", quickSort);
 //	reverse_test_int_sorter("insertionSort", insertionSort);
 }
 
@@ -56,5 +57,6 @@ TEST(Sorting, RandomOrderSort) {
 	cout << "[ TIME     ] " << "1000    \t10000   \t100000" << endl;
 	random_test_int_sorter("heapSort", heapSort);
 	random_test_int_sorter("mergeSort", mergeSort);
+	random_test_int_sorter("quickSort", quickSort);
 //	random_test_int_sorter("insertionSort", insertionSort);
 }

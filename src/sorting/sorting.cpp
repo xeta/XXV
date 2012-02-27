@@ -84,3 +84,36 @@ void mergeSort(void * const _start, void* const _end, size_t size,
 	merge(start, middle, end, size, cmp);
 }
 
+char* quickPartition(void * const root, void * const end, size_t size,
+		__comporator cmp) {
+
+	register char* part = (char*) root;
+	register char* iterator = (char*) root;
+	register char* last = (char*) end - size;
+	//just add randomization
+	if ((last - part) > size << 0x01) {
+		SWAP(iterator+(rand() % ((last - part) / size))*size, last, size);
+	}
+
+	while (iterator != last) {
+		if ((cmp)(iterator, last)) {
+			SWAP(iterator, part, size);
+			part += size;
+		}
+		iterator += size;
+	}
+
+	SWAP(part, last, size);
+
+	return part;
+}
+
+void quickSort(void * const root, void * const end, size_t size,
+		__comporator cmp) {
+	if (root == end || root == (char*) end - size)
+		return;
+	char* partition = quickPartition(root, end, size, cmp);
+	quickSort(root, partition, size, cmp);
+	quickSort(partition, end, size, cmp);
+}
+

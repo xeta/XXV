@@ -15,5 +15,8 @@ void mergeSort(void * const _start, void* const _end, size_t size,
 		__comporator cmp);
 void heapSort(void * const root, void * const end, size_t size,
 		__comporator cmp);
+void quickSort(void * const root, void * const end, size_t size,
+		__comporator cmp);
+
 
 #endif /* SORTING_H_ */
