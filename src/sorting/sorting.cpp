@@ -91,7 +91,7 @@ char* quickPartition(void * const root, void * const end, size_t size,
 	register char* iterator = (char*) root;
 	register char* last = (char*) end - size;
 	//just add randomization
-	if ((last - part) > size << 0x01) {
+	if ((last - part) > size << 0x06) {
 		SWAP(iterator+(rand() % ((last - part) / size))*size, last, size);
 	}
 
@@ -108,12 +108,35 @@ char* quickPartition(void * const root, void * const end, size_t size,
 	return part;
 }
 
+//void quickSort(void * const root, void * const end, size_t size,
+//		__comporator cmp) {
+//	if (root == end || root == (char*) end - size)
+//		return;
+//	char* partition = quickPartition(root, end, size, cmp);
+//	quickSort(root, partition, size, cmp);
+//	quickSort(partition, end, size, cmp);
+//}
+
 void quickSort(void * const root, void * const end, size_t size,
 		__comporator cmp) {
-	if (root == end || root == (char*) end - size)
-		return;
-	char* partition = quickPartition(root, end, size, cmp);
-	quickSort(root, partition, size, cmp);
-	quickSort(partition, end, size, cmp);
+	register part_t part = { (char*) root, (char*) end };
+
+	register std::stack<part_t> queue;
+	queue.push(part);
+	register char* partition;
+	while (!queue.empty()) {
+		part = queue.top();
+		queue.pop();
+		partition = quickPartition(part.begin, part.end, size, cmp);
+
+		if (partition != part.begin && partition != part.begin + size) {
+			part_t part1 = { part.begin, partition };
+			queue.push(part1);
+		}
+		if (partition != part.end && partition != part.end - size) {
+			part_t part2 = { partition, part.end };
+			queue.push(part2);
+		}
+	}
 }
 

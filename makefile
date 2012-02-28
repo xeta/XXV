@@ -1,6 +1,7 @@
 TEST_DIR = ./test
 SRC_DIR = ./src
 BIN_DIR = ./bin
+CXXFLAGS = -O3
 
 all: build_all build_tests clean
 
