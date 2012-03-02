@@ -140,3 +140,16 @@ void quickSort(void * const root, void * const end, size_t size,
 	}
 }
 
+void countSort(int* array, size_t length, size_t num_values) {
+	size_t* buffer = (size_t*) calloc(num_values, sizeof(size_t));
+	size_t i,j,out=0;
+	for (i = 0; i < length; i++) {
+		buffer[array[i]]++;
+	}
+	for (i=0; i<num_values; i++) {
+	    for (j=0; j<buffer[i]; j++) {
+	    	array[out++] = i;
+	    }
+	}
+	free(buffer);
+}

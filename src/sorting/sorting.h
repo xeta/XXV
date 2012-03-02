@@ -23,4 +23,6 @@ void heapSort(void * const root, void * const end, size_t size,
 void quickSort(void * const root, void * const end, size_t size,
 		__comporator cmp);
 
+
+void countSort(int* array, size_t length, size_t num_values);
 #endif /* SORTING_H_ */

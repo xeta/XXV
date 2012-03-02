@@ -5,6 +5,7 @@ Benchmark BM = Benchmark();
 const int _1000 = 1000;
 const int _10000 = 10000;
 const int _100000 = 100000;
+const int _1000000 = 1000000;
 
 void test_sorter(__sorter sorter, void * const start, void * const end,
 		size_t size, __comporator cmp) {
@@ -49,7 +50,7 @@ TEST(Sorting, InverseOrderSort) {
 	cout << "[ TIME     ] " << "1000    \t10000   \t100000" << endl;
 	reverse_test_int_sorter("heapSort", heapSort);
 	reverse_test_int_sorter("mergeSort", mergeSort);
-	reverse_test_int_sorter("quickSort", quickSort);
+	reverse_test_int_sorter("qgit uickSort", quickSort);
 //	reverse_test_int_sorter("insertionSort", insertionSort);
 }
 
@@ -59,4 +60,14 @@ TEST(Sorting, RandomOrderSort) {
 	random_test_int_sorter("mergeSort", mergeSort);
 	random_test_int_sorter("quickSort", quickSort);
 //	random_test_int_sorter("insertionSort", insertionSort);
+}
+
+TEST(Sorting, CountSort) {
+	int size = _1000;
+	int* array = craeteRandomArray(size);
+	BM.start();
+	countSort(array, size, size);
+	cout << "[ TIME     ] 100000 => " << BM.getTime() << endl;
+	EXPECT_TRUE(isSorted(array, size));
+	free(array);
 }

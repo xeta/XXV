@@ -18,7 +18,7 @@ bool isSorted(const void* begin, const void* end, size_t size,
 		__comporator cmp);
 
 // если массив отсортирован возвращает true.
-bool isSorted(const int* begin, const int* end);
+bool isSorted(int* begin, size_t total);
 
 // Структура данных для тестирования алгоритмов
 struct TestData {

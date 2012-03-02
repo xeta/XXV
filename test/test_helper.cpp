@@ -13,7 +13,7 @@ bool isSorted(const void* begin, const void* end, size_t size,
 	return true;
 }
 
-bool isSorted(const int* begin, size_t total) {
+bool isSorted(int* begin, size_t total) {
 	return isSorted(begin, begin + total, _INT, intComporator);
 }
 
