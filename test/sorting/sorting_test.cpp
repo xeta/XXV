@@ -6,6 +6,7 @@ const int _1000 = 1000;
 const int _10000 = 10000;
 const int _100000 = 100000;
 const int _1000000 = 1000000;
+const int _64000000 = 64000000;
 
 void test_sorter(__sorter sorter, void * const start, void * const end,
 		size_t size, __comporator cmp) {
@@ -71,3 +72,4 @@ TEST(Sorting, CountSort) {
 	EXPECT_TRUE(isSorted(array, size));
 	free(array);
 }
+

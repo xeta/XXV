@@ -3,6 +3,10 @@
 
 #ifndef GENERAL_H_
 #define GENERAL_H_
+
+// Размер типа данных int
+#define _INT sizeof(int)
+
 // Функция сравнения
 typedef int (*__comporator)(__const void *, __const void *);
 // Рассматривается в контексте приведение типа данных в bool
