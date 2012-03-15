@@ -10,9 +10,6 @@
 
 using namespace std;
 
-// Размер типа данных int
-#define _INT sizeof(int)
-
 // если массив отсортирован возвращает true
 bool isSorted(const void* begin, const void* end, size_t size,
 		__comporator cmp);
